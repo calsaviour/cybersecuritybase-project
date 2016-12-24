@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thank you!</title>
+</head>
+<body>
+
+<h1>Sql Injection</h1>
+
+<p>Get user details by entering name</p>
+
+<p>Key in the following data --> 1' or '1' = '1</p>
+
+<p>Key in the following data --> Kimi Riki</p>
+
+<form action="#" th:action="@{/account}" method="POST">
+    <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
+
+    <p><input type="submit" value="Submit"/></p>
+</form>
+
+
+<p>Result of Query</p>
+
+<table>
+    <tr>
+        <th>Username</th>
+    </tr>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.username}">Account iban</td>
+    </tr>
+</table>
+
+</body>
+</html>
