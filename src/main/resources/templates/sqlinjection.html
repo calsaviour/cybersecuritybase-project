@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Thank you!</title>
+    <title>Sql Injection</title>
 </head>
 <body>
 
@@ -13,23 +13,42 @@
 
 <p>Key in the following data --> Kimi Riki</p>
 
+
+<h1>Result of Query for Sql without parametrized</h1>
+
 <form action="#" th:action="@{/account}" method="POST">
     <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
 
     <p><input type="submit" value="Submit"/></p>
 </form>
 
-
-<p>Result of Query</p>
-
 <table>
     <tr>
         <th>Username</th>
     </tr>
     <tr th:each="account : ${accounts}">
-        <td th:text="${account.username}">Account iban</td>
+        <td th:text="${account.username}"></td>
     </tr>
 </table>
+
+
+<h1>Result of Query for Sql with Jpa</h1>
+
+<form action="#" th:action="@{/account_jpa}" method="POST">
+    <p><label for="name">Name</label>: <input type="text" name="name" id="nameJpa"/></p>
+
+    <p><input type="submit" value="Submit"/></p>
+</form>
+
+<table>
+    <tr>
+        <th>Username</th>
+    </tr>
+    <tr th:each="account : ${accountsJpa}">
+        <td th:text="${account.username}"></td>
+    </tr>
+</table>
+
 
 </body>
 </html>

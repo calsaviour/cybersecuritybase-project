@@ -24,7 +24,8 @@ public class AccountController {
     @Autowired
     private AccountRepository accountRepository;
 
-    private List<Account> accountList = new ArrayList<>();
+    private List<Account> accountList;
+    private List<Account> accountJpaList;
 
     @PostConstruct
     public void init() {
@@ -43,17 +44,18 @@ public class AccountController {
     @RequestMapping("/account")
     public String sqlInjection(Model model) {
         model.addAttribute("accounts", accountList);
+        model.addAttribute("accountsJpa", accountJpaList);
         return "sqlinjection";
     }
 
     @Transactional
     @RequestMapping(value = "/account", method = RequestMethod.POST)
-    public String getUser(@RequestParam String name, Model model) throws SQLException {
-        model.addAttribute("accounts", "");
+    public String getUser(@RequestParam String name) throws SQLException {
         String databaseAddress = "jdbc:h2:mem:testdb";
         Connection connection = DriverManager.getConnection(databaseAddress, "sa", "");
         String sqlQuery = "select * from Account where username=" + "'" + name + "'";
         ResultSet resultSet = connection.createStatement().executeQuery(sqlQuery);
+        accountList = new ArrayList<>();
         while (resultSet.next()) {
             String username = resultSet.getString("username");
             Account account = new Account();
@@ -63,8 +65,18 @@ public class AccountController {
 
         resultSet.close();
         connection.close();
+        return "redirect:/account";
+    }
 
-        model.addAttribute("accounts", accountList);
+    @Transactional
+    @RequestMapping(value = "/account_jpa", method = RequestMethod.POST)
+    public String getUserJpa(@RequestParam String name) throws SQLException {
+        Account account = accountRepository.findByUsername(name);
+
+        if (account == null) return "error";
+
+        accountJpaList = new ArrayList<>();
+        accountJpaList.add(account);
         return "redirect:/account";
     }
 }
