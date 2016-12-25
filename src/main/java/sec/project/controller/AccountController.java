@@ -42,7 +42,7 @@ public class AccountController {
     }
 
     @RequestMapping("/account")
-    public String sqlInjection(Model model) {
+    public String account(Model model) {
         model.addAttribute("accounts", accountList);
         model.addAttribute("accountsJpa", accountJpaList);
         return "sqlinjection";

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cross Site Scripting</title>
+</head>
+<body>
+
+<h1>Cross Site Scripting</h1>
+
+<form action="#" th:action="@{/blogs}" method="POST">
+    <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
+
+    <p><label for="comment">Comment</label>: <input type="text" name="comment" id="comment"/></p>
+
+    <p><input type="submit" value="Submit"/></p>
+</form>
+
+<table>
+    <tr>
+        <th>Blogs</th>
+    </tr>
+    <tr th:each="blog : ${blogs}">
+        <td th:text="${blog.name}"></td>
+        <td th:text="${blog.comment}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
