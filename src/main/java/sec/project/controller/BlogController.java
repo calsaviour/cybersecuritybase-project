@@ -10,6 +10,9 @@ import sec.project.domain.Blog;
 import sec.project.repository.BlogRepository;
 
 import javax.transaction.Transactional;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 @Controller
 public class BlogController {
@@ -25,7 +28,7 @@ public class BlogController {
 
     @Transactional
     @RequestMapping(value = "/blogs", method = RequestMethod.POST)
-    public String insert(@RequestParam String name, @RequestParam String comment) {
+    public String insertJpa(@RequestParam String name, @RequestParam String comment) {
         Blog blog = new Blog();
         blog.setName(name);
         blog.setComment(comment);

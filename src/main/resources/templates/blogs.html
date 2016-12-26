@@ -5,7 +5,20 @@
 </head>
 <body>
 
-<h1>Cross Site Scripting</h1>
+<h1>Cross Site Scripting (XSS)</h1>
+
+<p>
+    This demo is to demonstrate XSS attacks. The framework Thymeleaf framework is use to generate the html
+    th:text escape HTML code by default, th:utext unescape HTML text.
+</p>
+
+
+<h2>Example of Non Sanitize Input Data using th:utext for the comment input box
+    Eg; in the name input box key in Kimi
+    in the comment input box key in
+    &lt;script&gt;alert(&quot;Hello&quot;)&lt;/script&gt;
+</h2>
+
 
 <form action="#" th:action="@{/blogs}" method="POST">
     <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
@@ -14,6 +27,23 @@
 
     <p><input type="submit" value="Submit"/></p>
 </form>
+
+<table>
+    <tr>
+        <th>Blogs</th>
+    </tr>
+    <tr th:each="blog : ${blogs}">
+        <td th:text="${blog.name}"></td>
+        <td th:utext="${blog.comment}"></td>
+    </tr>
+</table>
+
+
+<h2>Example of Sanitize Input Data
+    Eg; in the name input box key in Kimi
+    in the comment input box key in
+    &lt;script&gt;alert(&quot;Hello&quot;)&lt;/script&gt;
+</h2>
 
 <table>
     <tr>
