@@ -45,7 +45,7 @@ public class AccountController {
     public String account(Model model) {
         model.addAttribute("accounts", accountList);
         model.addAttribute("accountsJpa", accountJpaList);
-        return "sqlinjection";
+        return "sql-injection";
     }
 
     @Transactional

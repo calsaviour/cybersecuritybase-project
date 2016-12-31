@@ -10,9 +10,7 @@ import sec.project.domain.Blog;
 import sec.project.repository.BlogRepository;
 
 import javax.transaction.Transactional;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
 
 @Controller
 public class BlogController {
@@ -23,7 +21,7 @@ public class BlogController {
     @RequestMapping(value = "/blogs")
     public String posts(Model model) {
         model.addAttribute("blogs", blogRepository.findAll());
-        return "blogs";
+        return "cross-site-scripting";
     }
 
     @Transactional
@@ -33,6 +31,6 @@ public class BlogController {
         blog.setName(name);
         blog.setComment(comment);
         blogRepository.save(blog);
-        return "redirect:/blogs";
+        return "redirect:/cross-site-scripting";
     }
 }
