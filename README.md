@@ -1,6 +1,8 @@
 Cybersecurity Project Report: Explaining web vulnerability and how to fix identified security flaws
 ------
 
+[![Build Status](https://travis-ci.org/calsaviour/cybersecuritybase-project.svg?branch=master)](https://travis-ci.org/calsaviour/cybersecuritybase-project)
+
 ## Prerequisite
 
 1. IntelliJ Idea Community Edition
