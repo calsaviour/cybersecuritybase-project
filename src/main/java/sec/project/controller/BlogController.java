@@ -19,14 +19,14 @@ public class BlogController {
     private BlogRepository blogRepository;
 
     @RequestMapping(value = "/blogs")
-    public String posts(Model model) {
+    public String postBlogs(Model model) {
         model.addAttribute("blogs", blogRepository.findAll());
         return "cross-site-scripting";
     }
 
     @Transactional
     @RequestMapping(value = "/blogs", method = RequestMethod.POST)
-    public String insertJpa(@RequestParam String name, @RequestParam String comment) {
+    public String insertBlogJpa(@RequestParam String name, @RequestParam String comment) {
         Blog blog = new Blog();
         blog.setName(name);
         blog.setComment(comment);

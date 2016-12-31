@@ -30,4 +30,9 @@ public class SignupController {
         return "index";
     }
 
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String loadIndex() {
+        return "index";
+    }
+
 }
