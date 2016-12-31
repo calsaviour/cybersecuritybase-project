@@ -63,3 +63,41 @@ Code in the second form
 
 ```
 
+## Cross Site Scripting
+Login to the web, first in the list is Sql Injection. Click on the Cross Site Scripting link.
+A screen as below will be prompt in your browser
+
+There are 2 tables. The first table does not sanitize the input by using the
+ attribute th:utext. The second table sanitize the input by using attribute th:text
+ 
+ 
+First Table
+
+```
+
+<table>
+    <tr>
+        <th>Blogs</th>
+    </tr>
+    <tr th:each="blog : ${blogs}">
+        <td th:text="${blog.name}"></td>
+        <td th:utext="${blog.comment}"></td>
+    </tr>
+</table>
+
+```
+
+Second Table
+
+```
+<table>
+    <tr>
+        <th>Blogs</th>
+    </tr>
+    <tr th:each="blog : ${blogs}">
+        <td th:text="${blog.name}"></td>
+        <td th:text="${blog.comment}"></td>
+    </tr>
+</table>
+```
+
